@@ -1,0 +1,140 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>2027 Federal Employee's Leave Record | fedretire.net</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#003f71;--blue:#0693e3;--txt:#313131;--grey:#f4f4f4;--line:#e9e9e9}
+*{box-sizing:border-box}body{margin:0;font-family:Lato,Arial,sans-serif;color:var(--txt);background:#fafafa}
+header{background:#fff;border-bottom:4px solid var(--navy);padding:14px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+header img{height:56px}header h1{font-family:'Roboto Condensed',sans-serif;color:var(--navy);margin:0;font-size:1.6rem}
+header p{margin:2px 0 0;font-size:.9rem}main{max-width:1400px;margin:auto;padding:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+h2{font-family:'Roboto Condensed';color:var(--navy);margin:0 0 8px;font-size:1.15rem}
+.legend span{display:inline-block;margin:2px 10px 2px 0;font-size:.85rem}.legend b{color:var(--navy)}
+.sum{display:flex;gap:10px;flex-wrap:wrap}.kpi{flex:1;min-width:140px;background:var(--grey);border-left:4px solid var(--navy);padding:8px 10px;border-radius:4px}
+.kpi div{font-size:.75rem;text-transform:uppercase}.kpi strong{font-size:1.4rem;color:var(--navy)}.kpi.warn{border-color:#cf2e2e}.kpi.warn strong{color:#cf2e2e}
+.tw{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.8rem;background:#fff}
+th,td{border:1px solid var(--line);padding:2px;text-align:center;white-space:nowrap}
+thead th{background:var(--navy);color:#fff;position:sticky;top:0;z-index:1}th.grp{background:#0a5590}
+td.pp{position:sticky;left:0;background:#fff;font-weight:700;text-align:left;padding:2px 6px}
+input{width:52px;border:1px solid #cfd8e3;border-radius:3px;padding:3px;font:inherit;text-align:right;background:#fffbe6}
+input.day{width:44px;text-align:center;background:#fff;text-transform:uppercase}input.day.h{background:#e6f4ea;font-weight:700}
+td.bal{font-weight:700;background:var(--grey)}td.neg{color:#cf2e2e}tr.tot td{font-weight:900;background:#e8eef5}
+.btns button{background:var(--navy);color:#fff;border:0;border-radius:4px;padding:8px 14px;font:700 .9rem Lato;cursor:pointer;margin-right:6px}
+.btns button.alt{background:#fff;color:var(--navy);border:1px solid var(--navy)}
+footer{background:var(--navy);color:#fff;padding:20px;font-size:.9rem}footer a{color:#fff}footer .grid{max-width:1400px;margin:auto}footer ol{padding-left:18px}
+@media print{header{border-bottom:2px solid #000}.btns,.noprint{display:none}body{background:#fff}input{border:0;background:none;width:auto;max-width:44px}
+ @page{size:landscape;margin:8mm}table{font-size:7pt}thead th{position:static}main{padding:0}.card{border:0;padding:4px}footer{background:none;color:#000}footer a{color:#000}}
+#cards,#mbar{display:none}
+@media (max-width:768px){.tw{display:none}#cards{display:block}
+#mbar{display:flex;position:sticky;top:0;z-index:5;background:var(--navy);color:#fff;gap:4px;padding:6px;margin:0 -16px 10px;overflow-x:auto}
+#mbar div{flex:1;min-width:58px;text-align:center;font-size:.65rem;text-transform:uppercase}#mbar b{display:block;font-size:1rem}#mbar .w b{color:#ffb3b0}
+.pc{background:#fff;border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:8px;padding:10px;margin-bottom:10px}
+.pc .hd{display:flex;justify-content:space-between;align-items:baseline}.pc .hd b{color:var(--navy);font-size:1.05rem}.pc small{font-size:.8rem}
+.badge{display:inline-block;background:#e6f4ea;color:#1e6b34;border-radius:10px;padding:1px 8px;font-size:.72rem;margin:4px 4px 0 0}
+.lt{display:grid;grid-template-columns:1.3fr 1fr 1fr .9fr;gap:4px 6px;align-items:center;margin-top:8px;font-size:.85rem}
+.lt .h{font-size:.7rem;text-transform:uppercase;color:#666}.lt input{width:100%;padding:7px 4px;font-size:1rem}.lt .bv{font-weight:700;text-align:right}.lt .bv.neg{color:#cf2e2e}
+details{margin-top:8px}summary{cursor:pointer;color:var(--navy);font-weight:700;font-size:.85rem}
+.dg{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:6px}.dg label{font-size:.6rem;text-align:center;color:#666}.dg input.day{width:100%;padding:6px 0;font-size:.85rem}}
+@media print{#cards,#mbar{display:none!important}.tw{display:block!important}}
+#gate{position:fixed;inset:0;z-index:50;background:rgba(0,40,72,.92);display:flex;align-items:center;justify-content:center;padding:16px;overflow:auto}
+#gate .box{background:#fff;border-radius:10px;max-width:460px;width:100%;padding:22px;border-top:6px solid var(--navy)}
+#gate img{height:48px}#gate h2{font-size:1.4rem;margin:12px 0 6px}#gate p{font-size:.9rem;margin:0 0 12px}
+#gate label{display:block;font-size:.8rem;font-weight:700;margin:8px 0 3px}#gate input{width:100%;text-align:left;background:#fff;padding:9px;font-size:1rem}
+#gate .row{display:flex;gap:10px}#gate .row>div{flex:1}#gate .err{color:#cf2e2e;font-size:.8rem;min-height:1em}
+#gate button{width:100%;margin-top:12px;background:var(--navy);color:#fff;border:0;border-radius:5px;padding:12px;font:900 1rem Lato;cursor:pointer}
+#gate .fine{font-size:.72rem;color:#666;margin-top:10px}body.locked{overflow:hidden}
+@media print{#gate{display:none!important}}
+</style></head><body>
+<div id="gate" role="dialog" aria-modal="true" aria-labelledby="gt"><div class="box">
+<img src="logo.jpg" alt="fedretire.net"><h2 id="gt">Get your free 2027 Federal Leave Chart</h2>
+<p>Track annual, sick, credit and comp leave for all 26 pay periods and plan your target retirement date. Enter your email for instant access.</p>
+<form id="gf" method="post" target="gframe" novalidate>
+<div class="row"><div><label for="g1">First name *</label><input id="g1" name="first_name" autocomplete="given-name" required></div>
+<div><label for="g2">Last name *</label><input id="g2" name="last_name" autocomplete="family-name" required></div></div>
+<label for="g3">Email *</label><input id="g3" name="email" type="email" autocomplete="email" required>
+<label for="g4">Agency (optional)</label><input id="g4" name="agency" autocomplete="organization">
+<div class="err" id="gerr"></div>
+<button type="submit">Unlock the Leave Chart</button>
+<div class="fine">By continuing, you agree to receive federal retirement planning emails from fedretire.net. You can unsubscribe at any time. We never sell your information.</div>
+</form></div></div><iframe name="gframe" style="display:none" title="signup"></iframe>
+<header><a href="https://fedretire.net/"><img src="logo.jpg" alt="fedretire.net Federal Employee's Retirement Planning Guide"></a>
+<div><h1>Regular Federal Employee's Leave Record – 2027</h1><p>26 pay periods this year (Jan 10, 2027 – Jan 8, 2028). Free leave chart compliments of <a href="https://fedretire.net/">fedretire.net</a></p></div></header>
+<main>
+<div class="grid">
+<div class="card"><h2>How to use</h2><p style="margin:0;font-size:.9rem">1. Enter your 2026 ending balances.<br>2. Each pay period, enter hours Earned and Used for each leave type. Balances update automatically.<br>3. Optionally note each day in the calendar cells, e.g. <b>S-4</b> for 4 hours of sick leave or <b>A-8</b> for a day of annual leave.<br>Your entries are saved in this browser only.</p></div>
+<div class="card"><h2>Annual leave earned each pay period</h2><p style="margin:0;font-size:.9rem">Less than 3 years: <b>4 hrs</b><br>3 – 15 years: <b>6 hrs</b> (10 hrs in last pay period)<br>15 years and over: <b>8 hrs</b><br><a href="https://federalretirement.net/sickleave.htm">Sick Leave Conversion Chart</a></p></div>
+<div class="card legend"><h2>Day codes</h2><span><b>A</b> Annual</span><span><b>S</b> Sick</span><span><b>H</b> Holiday*</span><span><b>CD</b> Cr Hrs Worked</span><span><b>CN</b> Cr Hrs Taken</span><span><b>L</b> Leave w/o Pay</span><span><b>CE</b> Comp Earned</span><span><b>CA</b> Comp Absent</span><span><b>CL</b> Court</span><span><b>X</b> AWS</span><span><b>O</b> Other**</span><div style="font-size:.75rem">*Observed holidays. **Other leave such as furloughs, etc.</div></div>
+</div>
+<div class="card"><h2>2026 ending balances (carryover)</h2><div class="sum" id="carry"></div></div>
+<div class="card"><h2>Year summary</h2><div class="sum" id="sum"></div></div>
+<div class="card btns noprint"><button onclick="print()">Print / Save PDF</button><button class="alt" onclick="if(confirm('Clear all entries?')){localStorage.removeItem(K);location.reload()}">Clear all entries</button></div>
+<div id="mbar"></div><div id="cards"></div><div class="card tw"><table id="t"></table></div>
+</main>
+<footer><div class="grid"><div><h2 style="color:#fff">Resources</h2>
+<a href="https://www.federaljobs.net/salarybase.htm">Pay Charts</a><br><a href="https://www.fedretire.net/">Retirement Planning Blog</a><br><a href="https://www.fedcareerinfo.com/">Federal Employee's Career Planning Guidance</a><br><a href="https://www.federalretirement.net/">Federal Employee's Retirement Planning</a><br><a href="https://visitor.constantcontact.com/manage/optin?v=001oGSL6wu1SRY5ZSzxcWznuz0hWBHIBxv1_lP75cRBNgiLUwgiQeOcrdDQBjrFfknNgR6y7FniPJg4qb7qymothw%3D%3D">Sign Up for Our FREE Federal Employee's Retirement Planning E-mail Newsletter</a></div>
+<div><h2 style="color:#fff">Retirement Planning Tools</h2><ol>
+<li><a href="https://federalretirement.net/Site/images/report_physical_emotional_enduser.pdf">How to be Emotionally and Physically Prepared When You Retire</a></li>
+<li><a href="https://federalretirement.net/Site/images/report_financial_enduser.pdf">How to be Financially Prepared When You Retire</a></li>
+<li><a href="https://www.federalretirement.net/Site/images/contactlist_2022-R1-fillable-1.pdf">Master Retiree Contact List</a></li>
+<li><a href="https://federalretirement.net/annuity.htm">Evaluating Your Annuity</a></li>
+<li><a href="https://federalretirement.net/eligibility.htm">Are You Eligible to Retire</a></li>
+<li><a href="https://federalretirement.net/sickleave.htm">Sick Leave Conversion Chart</a></li>
+<li><a href="https://fedretire.net/caution-do-this-before-you-retire/">Caution – Do This Before You Retire</a></li>
+<li><a href="https://fedretire.net/the-ultimate-retirement-planning-guide-start-now/">The Ultimate Retirement Planning Guide – Start Now!</a></li></ol></div></div>
+<p style="text-align:center;margin:10px 0 0">© 2027 fedretire.net. Free leave chart compliments of fedretire.net.</p></footer>
+<datalist id="codes"><option>A-8<option>S-8<option>S-4<option>H<option>CD-<option>CN-<option>L-8<option>CE-<option>CA-<option>CL-8<option>X<option>O-8</datalist>
+<script>
+const CAL={"sources": ["https://www.gsa.gov/system/files/2027-GSA-PayrollCalendar-r2.png", "https://nfc.usda.gov/publications/forms/1217n_27.pdf"], "leave_year": "2027-01-10 to 2028-01-08 (NFC PP01-PP26)", "notes": "NFC numbering: PP01=Jan10-23. GSA numbers one higher (GSA PP1 = Dec27 2026-Jan9 2027). Pay dates from GSA chart: official = Wed 11 days after period end; EFT = Thu 6 days after end. Dec 27 2026-Jan 9 2027 period is 2026 leave year PP26 and contains Jan 1 2027 holiday.", "pay_periods": [{"leave_year_pp": 1, "gsa_pp_number": 2, "start": "2027-01-10", "end": "2027-01-23", "gsa_official_pay_date": "2027-02-03", "gsa_eft_pay_date": "2027-01-29"}, {"leave_year_pp": 2, "gsa_pp_number": 3, "start": "2027-01-24", "end": "2027-02-06", "gsa_official_pay_date": "2027-02-17", "gsa_eft_pay_date": "2027-02-12"}, {"leave_year_pp": 3, "gsa_pp_number": 4, "start": "2027-02-07", "end": "2027-02-20", "gsa_official_pay_date": "2027-03-03", "gsa_eft_pay_date": "2027-02-26"}, {"leave_year_pp": 4, "gsa_pp_number": 5, "start": "2027-02-21", "end": "2027-03-06", "gsa_official_pay_date": "2027-03-17", "gsa_eft_pay_date": "2027-03-12"}, {"leave_year_pp": 5, "gsa_pp_number": 6, "start": "2027-03-07", "end": "2027-03-20", "gsa_official_pay_date": "2027-03-31", "gsa_eft_pay_date": "2027-03-26"}, {"leave_year_pp": 6, "gsa_pp_number": 7, "start": "2027-03-21", "end": "2027-04-03", "gsa_official_pay_date": "2027-04-14", "gsa_eft_pay_date": "2027-04-09"}, {"leave_year_pp": 7, "gsa_pp_number": 8, "start": "2027-04-04", "end": "2027-04-17", "gsa_official_pay_date": "2027-04-28", "gsa_eft_pay_date": "2027-04-23"}, {"leave_year_pp": 8, "gsa_pp_number": 9, "start": "2027-04-18", "end": "2027-05-01", "gsa_official_pay_date": "2027-05-12", "gsa_eft_pay_date": "2027-05-07"}, {"leave_year_pp": 9, "gsa_pp_number": 10, "start": "2027-05-02", "end": "2027-05-15", "gsa_official_pay_date": "2027-05-26", "gsa_eft_pay_date": "2027-05-21"}, {"leave_year_pp": 10, "gsa_pp_number": 11, "start": "2027-05-16", "end": "2027-05-29", "gsa_official_pay_date": "2027-06-09", "gsa_eft_pay_date": "2027-06-04"}, {"leave_year_pp": 11, "gsa_pp_number": 12, "start": "2027-05-30", "end": "2027-06-12", "gsa_official_pay_date": "2027-06-23", "gsa_eft_pay_date": "2027-06-18"}, {"leave_year_pp": 12, "gsa_pp_number": 13, "start": "2027-06-13", "end": "2027-06-26", "gsa_official_pay_date": "2027-07-07", "gsa_eft_pay_date": "2027-07-02"}, {"leave_year_pp": 13, "gsa_pp_number": 14, "start": "2027-06-27", "end": "2027-07-10", "gsa_official_pay_date": "2027-07-21", "gsa_eft_pay_date": "2027-07-16"}, {"leave_year_pp": 14, "gsa_pp_number": 15, "start": "2027-07-11", "end": "2027-07-24", "gsa_official_pay_date": "2027-08-04", "gsa_eft_pay_date": "2027-07-30"}, {"leave_year_pp": 15, "gsa_pp_number": 16, "start": "2027-07-25", "end": "2027-08-07", "gsa_official_pay_date": "2027-08-18", "gsa_eft_pay_date": "2027-08-13"}, {"leave_year_pp": 16, "gsa_pp_number": 17, "start": "2027-08-08", "end": "2027-08-21", "gsa_official_pay_date": "2027-09-01", "gsa_eft_pay_date": "2027-08-27"}, {"leave_year_pp": 17, "gsa_pp_number": 18, "start": "2027-08-22", "end": "2027-09-04", "gsa_official_pay_date": "2027-09-15", "gsa_eft_pay_date": "2027-09-10"}, {"leave_year_pp": 18, "gsa_pp_number": 19, "start": "2027-09-05", "end": "2027-09-18", "gsa_official_pay_date": "2027-09-29", "gsa_eft_pay_date": "2027-09-24"}, {"leave_year_pp": 19, "gsa_pp_number": 20, "start": "2027-09-19", "end": "2027-10-02", "gsa_official_pay_date": "2027-10-13", "gsa_eft_pay_date": "2027-10-08"}, {"leave_year_pp": 20, "gsa_pp_number": 21, "start": "2027-10-03", "end": "2027-10-16", "gsa_official_pay_date": "2027-10-27", "gsa_eft_pay_date": "2027-10-22"}, {"leave_year_pp": 21, "gsa_pp_number": 22, "start": "2027-10-17", "end": "2027-10-30", "gsa_official_pay_date": "2027-11-10", "gsa_eft_pay_date": "2027-11-05"}, {"leave_year_pp": 22, "gsa_pp_number": 23, "start": "2027-10-31", "end": "2027-11-13", "gsa_official_pay_date": "2027-11-24", "gsa_eft_pay_date": "2027-11-19"}, {"leave_year_pp": 23, "gsa_pp_number": 24, "start": "2027-11-14", "end": "2027-11-27", "gsa_official_pay_date": "2027-12-08", "gsa_eft_pay_date": "2027-12-03"}, {"leave_year_pp": 24, "gsa_pp_number": 25, "start": "2027-11-28", "end": "2027-12-11", "gsa_official_pay_date": "2027-12-22", "gsa_eft_pay_date": "2027-12-17"}, {"leave_year_pp": 25, "gsa_pp_number": 26, "start": "2027-12-12", "end": "2027-12-25", "gsa_official_pay_date": "2028-01-05", "gsa_eft_pay_date": "2027-12-31"}, {"leave_year_pp": 26, "gsa_pp_number": 1, "start": "2027-12-26", "end": "2028-01-08", "gsa_official_pay_date": "2028-01-19", "gsa_eft_pay_date": "2028-01-14"}], "holidays": [{"date": "2027-01-01", "name": "New Year's Day", "leave_year_pp": "2026 PP26"}, {"date": "2027-01-18", "name": "MLK Jr. Day", "leave_year_pp": 1}, {"date": "2027-02-15", "name": "Washington's Birthday", "leave_year_pp": 3}, {"date": "2027-05-31", "name": "Memorial Day", "leave_year_pp": 11}, {"date": "2027-06-18", "name": "Juneteenth (observed; Jun 19 is Sat)", "leave_year_pp": 12}, {"date": "2027-07-05", "name": "Independence Day (observed; Jul 4 is Sun)", "leave_year_pp": 13}, {"date": "2027-09-06", "name": "Labor Day", "leave_year_pp": 18}, {"date": "2027-10-11", "name": "Columbus Day", "leave_year_pp": 20}, {"date": "2027-11-11", "name": "Veterans Day", "leave_year_pp": 22}, {"date": "2027-11-25", "name": "Thanksgiving", "leave_year_pp": 23}, {"date": "2027-12-24", "name": "Christmas (observed; Dec 25 is Sat)", "leave_year_pp": 25}, {"date": "2027-12-31", "name": "New Year's Day 2028 (observed; Jan 1 2028 is Sat)", "leave_year_pp": 26}]};const K='fedretire-leave-2027';
+const T=[['a','Annual Leave'],['s','Sick Leave'],['c','Credit Hours'],['m','Comp Hours']];
+let D=JSON.parse(localStorage.getItem(K)||'{}');const save=()=>localStorage.setItem(K,JSON.stringify(D));
+const n=v=>{v=parseFloat(v);return isNaN(v)?0:v};const f=v=>(Math.round(v*100)/100).toString();
+const md=s=>new Date(s+'T12:00').toLocaleDateString('en-US',{month:'short',day:'numeric'});
+const hol={};CAL.holidays.forEach(h=>hol[h.date]=h.name);
+function inp(k,cls='',ph=''){return `<input data-k="${k}" class="${cls}" inputmode="decimal" type="number" min="0" step="0.25" value="${D[k]??''}" placeholder="${ph}">`}
+let h='<thead><tr><th rowspan=2>PP</th><th rowspan=2>Pay Period</th><th rowspan=2>Pay Date</th>';
+['SUN','MON','TUE','WED','THU','FRI','SAT','SUN','MON','TUE','WED','THU','FRI','SAT'].forEach(d=>h+=`<th rowspan=2>${d}</th>`);
+T.forEach(t=>h+=`<th colspan=3 class=grp>${t[1]}</th>`);h+='</tr><tr>'+T.map(()=>'<th>Earned</th><th>Used</th><th>Bal</th>').join('')+'</tr></thead><tbody>';
+CAL.pay_periods.forEach(p=>{const i=p.leave_year_pp;h+=`<tr><td class=pp>${i}</td><td>${md(p.start)} – ${md(p.end)}</td><td>${md(p.gsa_official_pay_date)}</td>`;
+ for(let d=0;d<14;d++){const dt=new Date(p.start+'T12:00');dt.setDate(dt.getDate()+d);const iso=dt.toISOString().slice(0,10);const k='d'+i+'_'+d;
+  const isH=hol[iso];const v=D[k]??(isH?'H':'');h+=`<td title="${md(iso)}${isH?' – '+isH:''}"><input list=codes data-k="${k}" class="day${isH?' h':''}" value="${v}"></td>`}
+ T.forEach(t=>h+=`<td>${inp(t[0]+'e'+i,'','0')}</td><td>${inp(t[0]+'u'+i,'','0')}</td><td class=bal id="${t[0]}b${i}"></td>`);h+='</tr>'});
+h+='<tr class=tot><td colspan=17 style="text-align:right">Year totals / ending balance</td>'+T.map(t=>`<td id="${t[0]}te"></td><td id="${t[0]}tu"></td><td id="${t[0]}tb"></td>`).join('')+'</tr></tbody>';
+document.getElementById('t').innerHTML=h;
+document.getElementById('carry').innerHTML=T.map(t=>`<label class=kpi><div>${t[1]} (2026 bal)</div>${inp(t[0]+'c','', '0')} hrs</label>`).join('');
+function calc(){const r={};T.forEach(([k])=>{let b=n(D[k+'c']),E=0,U=0;for(let i=1;i<=26;i++){const e=n(D[k+'e'+i]),u=n(D[k+'u'+i]);b=b+e-u;E+=e;U+=u;
+  const c=document.getElementById(k+'b'+i);c.textContent=f(b);c.classList.toggle('neg',b<0)}
+  document.getElementById(k+'te').textContent=f(E);document.getElementById(k+'tu').textContent=f(U);const tb=document.getElementById(k+'tb');tb.textContent=f(b);tb.classList.toggle('neg',b<0);r[k]=b});
+ const ul=r.a-240>0?r.a-240:0;
+ document.getElementById('sum').innerHTML=`<div class=kpi><div>Annual balance</div><strong>${f(r.a)}</strong> hrs</div><div class=kpi><div>Sick balance</div><strong>${f(r.s)}</strong> hrs</div><div class=kpi><div>Credit balance</div><strong>${f(r.c)}</strong> hrs</div><div class=kpi><div>Comp balance</div><strong>${f(r.m)}</strong> hrs</div><div class="kpi ${ul>0?'warn':''}"><div>Use/Lose (annual over 240)</div><strong>${f(ul)}</strong> hrs</div><div class=kpi><div>Credit days (credit ÷ 8)</div><strong>${f(r.c/8)}</strong></div><div class="kpi ${ul>0?'warn':''}"><div>U/L weeks (use/lose ÷ 40)</div><strong>${f(ul/40)}</strong></div>`}
+document.addEventListener('input',e=>{const k=e.target.dataset.k;if(!k)return;let v=e.target.value;if(e.target.type=='number'&&v!==''&&n(v)<0){v='0';e.target.value=v}
+ if(v==='')delete D[k];else D[k]=e.target.classList.contains('day')?v.toUpperCase():v;save();calc()});
+calc();
+
+const DN=['S','M','T','W','T','F','S'];let ch='';
+CAL.pay_periods.forEach(p=>{const i=p.leave_year_pp;let days='',bad='';
+ for(let d=0;d<14;d++){const dt=new Date(p.start+'T12:00');dt.setDate(dt.getDate()+d);const iso=dt.toISOString().slice(0,10);const k='d'+i+'_'+d;const isH=hol[iso];
+  if(isH)bad+=`<span class=badge>${md(iso)}: ${isH}</span>`;days+=`<div><label>${DN[d%7]} ${dt.getDate()}</label><input list=codes data-k="${k}" class="day${isH?' h':''}" value="${D[k]??(isH?'H':'')}"></div>`}
+ ch+=`<div class=pc><div class=hd><b>PP ${i}</b><small>${md(p.start)} – ${md(p.end)} · Pay ${md(p.gsa_official_pay_date)}</small></div>${bad}
+ <div class=lt><span class=h>Type</span><span class=h>Earned</span><span class=h>Used</span><span class="h" style="text-align:right">Bal</span>
+ ${T.map(t=>`<span>${t[1].split(' ')[0]}</span>${inp(t[0]+'e'+i,'','0')}${inp(t[0]+'u'+i,'','0')}<span class=bv id="m${t[0]}b${i}"></span>`).join('')}</div>
+ <details><summary>Daily codes (optional)</summary><div class=dg>${days}</div></details></div>`});
+document.getElementById('cards').innerHTML=ch;
+const _calc=calc;calc=function(){_calc();T.forEach(([k])=>{for(let i=1;i<=26;i++){const s=document.getElementById(k+'b'+i),m=document.getElementById('m'+k+'b'+i);m.textContent=s.textContent;m.classList.toggle('neg',s.classList.contains('neg'))}});
+ const g=id=>document.getElementById(id).textContent,ul=Math.max(0,parseFloat(g('atb'))-240);
+ document.getElementById('mbar').innerHTML=`<div>Annual<b>${g('atb')}</b></div><div>Sick<b>${g('stb')}</b></div><div>Credit<b>${g('ctb')}</b></div><div>Comp<b>${g('mtb')}</b></div><div class="${ul>0?'w':''}">Use/Lose<b>${f(ul)}</b></div><div>Cr Days<b>${f(parseFloat(g('ctb'))/8)}</b></div>`};
+document.addEventListener('input',e=>{const k=e.target.dataset.k;if(!k)return;document.querySelectorAll(`[data-k="${k}"]`).forEach(x=>{if(x!==e.target)x.value=e.target.value})},true);
+calc();
+</script><script>
+/* CONFIG: Pardot form handler (or other) URL. Leave '' to skip posting. Field names: first_name, last_name, email, agency */
+const SIGNUP_ENDPOINT='';
+(function(){const UK='fedretire-leave-2027-unlocked',g=document.getElementById('gate');
+ if(localStorage.getItem(UK)){g.remove();return}document.body.classList.add('locked');
+ const unlock=()=>{localStorage.setItem(UK,new Date().toISOString());g.remove();document.body.classList.remove('locked')};
+ document.getElementById('gf').addEventListener('submit',e=>{const f=e.target,v=n=>f[n].value.trim(),er=document.getElementById('gerr');
+  if(!v('first_name')||!v('last_name')){e.preventDefault();er.textContent='Please enter your first and last name.';return}
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email'))){e.preventDefault();er.textContent='Please enter a valid email address.';return}
+  if(!SIGNUP_ENDPOINT){e.preventDefault();console.log('Signup (no endpoint set):',Object.fromEntries(new FormData(f)));unlock();return}
+  f.action=SIGNUP_ENDPOINT;setTimeout(unlock,800); /* form posts to hidden iframe: no CORS needed */});
+})();
+</script></body></html>
