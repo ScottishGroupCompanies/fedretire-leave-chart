@@ -41,6 +41,7 @@ thead tr.yb th{background:#e8eef5;color:var(--navy);font-weight:700;white-space:
 .af label{font-weight:700;font-size:.8rem;color:var(--navy);display:block;text-align:left}
 .af select{width:auto;min-width:108px;background:#fff;color:var(--navy);border:1px solid var(--navy);border-radius:4px;padding:6px 8px;font:700 .85rem Lato;text-align:left}
 .af-hint{font-size:.72rem;font-weight:400;line-height:1.3;white-space:normal;text-align:left;color:#313131;margin-top:4px}
+.savestatus{flex-basis:100%;margin:2px 0 0;font-size:.8rem;color:#555;min-height:1.1em}
 th.algrp .af-mini{margin-top:4px}
 th.algrp .af-mini select{background:#fff;color:var(--navy);border:0;border-radius:3px;font:700 .75rem Lato;padding:3px 6px;width:auto;min-width:72px}
 th.grp .subh{display:block;font-weight:400;font-size:.65rem;white-space:normal;line-height:1.25;margin-top:2px}
@@ -95,13 +96,13 @@ details{margin-top:8px}summary{cursor:pointer;color:var(--navy);font-weight:700;
 <div><h1>Regular Federal Employee's Leave Record – 2027</h1><p>26 pay periods this year (Jan 10, 2027 – Jan 8, 2028). Free leave chart compliments of <a href="https://fedretire.net/">fedretire.net</a></p></div></header>
 <main>
 <div class="grid">
-<div class="card"><h2>How to use</h2><p style="margin:0;font-size:.9rem">Enter your 2026 ending leave balances at the top of each leave category.<br>Enter leave hours used for each leave type per pay period. Accrued annual leave balances update automatically based on your selection, either 4, 6 or 8 hours per pay. All entries can be edited for part-time employees.<br>When taking leave, choose A, S, C1, or C2 for that day and the hours used (fractional hours are allowed). Daily hours are not copied into the Used column. You must add them to each leave category on the right side of the form per pay period. Your entries are saved in this browser only.</p></div>
+<div class="card"><h2>How to use</h2><p style="margin:0;font-size:.9rem">Enter your 2026 ending leave balances at the top of each leave category.<br>Enter leave hours used for each leave type per pay period. Accrued annual leave balances update automatically based on your selection, either 4, 6 or 8 hours per pay. All entries can be edited for part-time employees.<br>When taking leave, choose A, S, C1, or C2 for that day and the hours used (fractional hours are allowed). Daily hours are not copied into the Used column. You must add them to each leave category on the right side of the form per pay period. Your entries are saved automatically.</p></div>
 <div class="card"><h2>Annual leave earned each pay period</h2><p style="margin:0;font-size:.9rem">Less than 3 years: <b>4 hrs</b><br>3 – 15 years: <b>6 hrs</b> (10 hrs in last pay period — type 10 on pay period 26)<br>15 years and over: <b>8 hrs</b><br>Choose 4, 6, or 8 next to Clear all entries. That fills all 26 annual earned cells, and you can still change any pay period.</p><h2>SICK LEAVE</h2><p style="margin:0;font-size:.9rem">Sick leave auto-accrues at 4 hours per pay period. All entries can be edited for part-time employees.</p><p style="margin:8px 0 0;font-size:.9rem"><a href="https://federalretirement.net/sick-leave-conversion/" target="_blank" rel="noopener noreferrer">Sick Leave Conversion Chart</a></p></div>
 <div class="card legend"><h2>Day codes</h2><span><b>A</b> Annual</span><span><b>S</b> Sick</span><span><b>C1</b> Credit hours</span><span><b>C2</b> Comp hours</span><span><b>H</b> Holiday</span><div style="font-size:.75rem">Holidays stay marked on the calendar. Enter hours beside A, S, C1, or C2. Add those hours yourself in the Used column.</div></div>
 </div>
 <div class="card"><h2>Year summary</h2><div class="sum" id="sum"></div></div>
 <div class="card" id="start-mobile"></div>
-<div class="card btns noprint" id="toolbar"><button type="button" onclick="print()">Print / Save PDF</button><button type="button" class="alt" id="clear-btn" onclick="clearEntries()">Clear all entries</button><div class="albox" id="albox"></div></div>
+<div class="card btns noprint" id="toolbar"><button type="button" onclick="print()">Print / Save PDF</button><button type="button" class="alt" id="clear-btn" onclick="clearEntries()">Clear all entries</button><div class="albox" id="albox"></div><p id="savestatus" class="savestatus" aria-live="polite"></p></div>
 <div id="mbar"></div><div id="cards"></div><div class="card tw"><table id="t"></table></div>
 </main>
 <footer><div class="grid"><div><h2 style="color:#fff">Resources</h2>
@@ -120,9 +121,46 @@ details{margin-top:8px}summary{cursor:pointer;color:var(--navy);font-weight:700;
 <p style="text-align:center;margin:10px 0 0">© 2027 fedretire.net. Free leave chart compliments of fedretire.net.</p></footer>
 <script>
 const CAL={"sources": ["https://www.gsa.gov/system/files/2027-GSA-PayrollCalendar-r2.png", "https://nfc.usda.gov/publications/forms/1217n_27.pdf"], "leave_year": "2027-01-10 to 2028-01-08 (NFC PP01-PP26)", "notes": "NFC numbering: PP01=Jan10-23. GSA numbers one higher (GSA PP1 = Dec27 2026-Jan9 2027). Pay dates from GSA chart: official = Wed 11 days after period end; EFT = Thu 6 days after end. Dec 27 2026-Jan 9 2027 period is 2026 leave year PP26 and contains Jan 1 2027 holiday.", "pay_periods": [{"leave_year_pp": 1, "gsa_pp_number": 2, "start": "2027-01-10", "end": "2027-01-23", "gsa_official_pay_date": "2027-02-03", "gsa_eft_pay_date": "2027-01-29"}, {"leave_year_pp": 2, "gsa_pp_number": 3, "start": "2027-01-24", "end": "2027-02-06", "gsa_official_pay_date": "2027-02-17", "gsa_eft_pay_date": "2027-02-12"}, {"leave_year_pp": 3, "gsa_pp_number": 4, "start": "2027-02-07", "end": "2027-02-20", "gsa_official_pay_date": "2027-03-03", "gsa_eft_pay_date": "2027-02-26"}, {"leave_year_pp": 4, "gsa_pp_number": 5, "start": "2027-02-21", "end": "2027-03-06", "gsa_official_pay_date": "2027-03-17", "gsa_eft_pay_date": "2027-03-12"}, {"leave_year_pp": 5, "gsa_pp_number": 6, "start": "2027-03-07", "end": "2027-03-20", "gsa_official_pay_date": "2027-03-31", "gsa_eft_pay_date": "2027-03-26"}, {"leave_year_pp": 6, "gsa_pp_number": 7, "start": "2027-03-21", "end": "2027-04-03", "gsa_official_pay_date": "2027-04-14", "gsa_eft_pay_date": "2027-04-09"}, {"leave_year_pp": 7, "gsa_pp_number": 8, "start": "2027-04-04", "end": "2027-04-17", "gsa_official_pay_date": "2027-04-28", "gsa_eft_pay_date": "2027-04-23"}, {"leave_year_pp": 8, "gsa_pp_number": 9, "start": "2027-04-18", "end": "2027-05-01", "gsa_official_pay_date": "2027-05-12", "gsa_eft_pay_date": "2027-05-07"}, {"leave_year_pp": 9, "gsa_pp_number": 10, "start": "2027-05-02", "end": "2027-05-15", "gsa_official_pay_date": "2027-05-26", "gsa_eft_pay_date": "2027-05-21"}, {"leave_year_pp": 10, "gsa_pp_number": 11, "start": "2027-05-16", "end": "2027-05-29", "gsa_official_pay_date": "2027-06-09", "gsa_eft_pay_date": "2027-06-04"}, {"leave_year_pp": 11, "gsa_pp_number": 12, "start": "2027-05-30", "end": "2027-06-12", "gsa_official_pay_date": "2027-06-23", "gsa_eft_pay_date": "2027-06-18"}, {"leave_year_pp": 12, "gsa_pp_number": 13, "start": "2027-06-13", "end": "2027-06-26", "gsa_official_pay_date": "2027-07-07", "gsa_eft_pay_date": "2027-07-02"}, {"leave_year_pp": 13, "gsa_pp_number": 14, "start": "2027-06-27", "end": "2027-07-10", "gsa_official_pay_date": "2027-07-21", "gsa_eft_pay_date": "2027-07-16"}, {"leave_year_pp": 14, "gsa_pp_number": 15, "start": "2027-07-11", "end": "2027-07-24", "gsa_official_pay_date": "2027-08-04", "gsa_eft_pay_date": "2027-07-30"}, {"leave_year_pp": 15, "gsa_pp_number": 16, "start": "2027-07-25", "end": "2027-08-07", "gsa_official_pay_date": "2027-08-18", "gsa_eft_pay_date": "2027-08-13"}, {"leave_year_pp": 16, "gsa_pp_number": 17, "start": "2027-08-08", "end": "2027-08-21", "gsa_official_pay_date": "2027-09-01", "gsa_eft_pay_date": "2027-08-27"}, {"leave_year_pp": 17, "gsa_pp_number": 18, "start": "2027-08-22", "end": "2027-09-04", "gsa_official_pay_date": "2027-09-15", "gsa_eft_pay_date": "2027-09-10"}, {"leave_year_pp": 18, "gsa_pp_number": 19, "start": "2027-09-05", "end": "2027-09-18", "gsa_official_pay_date": "2027-09-29", "gsa_eft_pay_date": "2027-09-24"}, {"leave_year_pp": 19, "gsa_pp_number": 20, "start": "2027-09-19", "end": "2027-10-02", "gsa_official_pay_date": "2027-10-13", "gsa_eft_pay_date": "2027-10-08"}, {"leave_year_pp": 20, "gsa_pp_number": 21, "start": "2027-10-03", "end": "2027-10-16", "gsa_official_pay_date": "2027-10-27", "gsa_eft_pay_date": "2027-10-22"}, {"leave_year_pp": 21, "gsa_pp_number": 22, "start": "2027-10-17", "end": "2027-10-30", "gsa_official_pay_date": "2027-11-10", "gsa_eft_pay_date": "2027-11-05"}, {"leave_year_pp": 22, "gsa_pp_number": 23, "start": "2027-10-31", "end": "2027-11-13", "gsa_official_pay_date": "2027-11-24", "gsa_eft_pay_date": "2027-11-19"}, {"leave_year_pp": 23, "gsa_pp_number": 24, "start": "2027-11-14", "end": "2027-11-27", "gsa_official_pay_date": "2027-12-08", "gsa_eft_pay_date": "2027-12-03"}, {"leave_year_pp": 24, "gsa_pp_number": 25, "start": "2027-11-28", "end": "2027-12-11", "gsa_official_pay_date": "2027-12-22", "gsa_eft_pay_date": "2027-12-17"}, {"leave_year_pp": 25, "gsa_pp_number": 26, "start": "2027-12-12", "end": "2027-12-25", "gsa_official_pay_date": "2028-01-05", "gsa_eft_pay_date": "2027-12-31"}, {"leave_year_pp": 26, "gsa_pp_number": 1, "start": "2027-12-26", "end": "2028-01-08", "gsa_official_pay_date": "2028-01-19", "gsa_eft_pay_date": "2028-01-14"}], "holidays": [{"date": "2027-01-01", "name": "New Year's Day", "leave_year_pp": "2026 PP26"}, {"date": "2027-01-18", "name": "MLK Jr. Day", "leave_year_pp": 1}, {"date": "2027-02-15", "name": "Washington's Birthday", "leave_year_pp": 3}, {"date": "2027-05-31", "name": "Memorial Day", "leave_year_pp": 11}, {"date": "2027-06-18", "name": "Juneteenth (observed; Jun 19 is Sat)", "leave_year_pp": 12}, {"date": "2027-07-05", "name": "Independence Day (observed; Jul 4 is Sun)", "leave_year_pp": 13}, {"date": "2027-09-06", "name": "Labor Day", "leave_year_pp": 18}, {"date": "2027-10-11", "name": "Columbus Day", "leave_year_pp": 20}, {"date": "2027-11-11", "name": "Veterans Day", "leave_year_pp": 22}, {"date": "2027-11-25", "name": "Thanksgiving", "leave_year_pp": 23}, {"date": "2027-12-24", "name": "Christmas (observed; Dec 25 is Sat)", "leave_year_pp": 25}, {"date": "2027-12-31", "name": "New Year's Day 2028 (observed; Jan 1 2028 is Sat)", "leave_year_pp": 26}]};const K='fedretire-leave-2027';
+const TOKEN_KEY='fedretire-leave-2027-token';
+const EMAIL_KEY='fedretire-leave-2027-email';
+const NAME_KEY='fedretire-leave-2027-name';
+const UPDATED_KEY='fedretire-leave-2027-updated';
+const UK='fedretire-leave-2027-unlocked';
 const T=[['a','Annual Leave'],['s','Sick Leave'],['c','Credit Hours (C1)'],['m','Comp Hours (C2)']];
 const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-let D=JSON.parse(localStorage.getItem(K)||'{}');const save=()=>localStorage.setItem(K,JSON.stringify(D));
+let D={};
+let allowSync=false;
+let cloudMode='off';
+function save(){localStorage.setItem(K,JSON.stringify(D));if(!allowSync)return;localStorage.setItem(UPDATED_KEY,new Date().toISOString());scheduleSync()}
+function setStatus(mode){const el=document.getElementById('savestatus');if(!el)return;el.textContent=mode==='saving'?'Saving…':mode==='saved'?'Saved':'Saved in this browser'}
+let syncTimer=null;
+function scheduleSync(){if(!localStorage.getItem(TOKEN_KEY)){setStatus('local');return}setStatus('saving');clearTimeout(syncTimer);syncTimer=setTimeout(pushChart,1500)}
+async function pushChart(){const token=localStorage.getItem(TOKEN_KEY);if(!token){setStatus('local');return}setStatus('saving');
+ try{const res=await fetch('/api/entries',{method:'PUT',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({data:JSON.parse(localStorage.getItem(K)||'{}')})});
+  if(res.status===401){localStorage.removeItem(TOKEN_KEY);cloudMode='off';setStatus('local');return}
+  if(res.status===503||!res.ok){setStatus('local');return}
+  const body=await res.json().catch(()=>({}));if(body.updated_at)localStorage.setItem(UPDATED_KEY,body.updated_at);cloudMode='on';setStatus('saved')}
+ catch(e){setStatus('local')}}
+async function prepareChart(){try{
+  let token=localStorage.getItem(TOKEN_KEY);
+  if(!token&&localStorage.getItem(UK)){const email=(localStorage.getItem(EMAIL_KEY)||'').trim().toLowerCase();
+   if(email){const res=await fetch('/api/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,name:localStorage.getItem(NAME_KEY)||null})});
+    if(res.status===503){cloudMode='off';return}
+    if(res.ok){const body=await res.json();if(body.token){token=body.token;localStorage.setItem(TOKEN_KEY,token);cloudMode='on';
+     const raw=localStorage.getItem(K);if(raw){const put=await fetch('/api/entries',{method:'PUT',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({data:JSON.parse(raw)})});
+      if(put.ok){const saved=await put.json().catch(()=>({}));if(saved.updated_at)localStorage.setItem(UPDATED_KEY,saved.updated_at)}else if(put.status===503)cloudMode='off'}}}
+    return}}
+  if(!token)return;
+  const res=await fetch('/api/entries',{headers:{Authorization:'Bearer '+token}});
+  if(res.status===503){cloudMode='off';return}
+  if(res.status===401){localStorage.removeItem(TOKEN_KEY);cloudMode='off';return}
+  if(res.status===404){cloudMode='on';return}
+  if(!res.ok)return;
+  const body=await res.json();
+  if(!body||!body.data||typeof body.data!=='object'||Array.isArray(body.data)||!body.updated_at){cloudMode='on';return}
+  const localStamp=localStorage.getItem(UPDATED_KEY);
+  if(!localStamp||new Date(body.updated_at).getTime()>new Date(localStamp).getTime()){localStorage.setItem(K,JSON.stringify(body.data));localStorage.setItem(UPDATED_KEY,body.updated_at)}
+  cloudMode='on'}catch(e){}}
 const n=v=>{v=parseFloat(v);return isNaN(v)?0:v};const f=v=>(Math.round(v*100)/100).toString();
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 const md=s=>{const d=new Date(s+'T12:00');return MON[d.getMonth()]+' '+d.getDate()};
@@ -139,6 +177,11 @@ function migrateDays(){if(D.dayMigrated) return;for(let i=1;i<=26;i++){for(let d
  const m=old.trim().toUpperCase().match(/^(A|S|C1|C2|C)(?:-|\s+)?(\d*\.?\d+)?$/);if(m){const tk='dt'+i+'_'+d,hk='dh'+i+'_'+d;const code=m[1]==='C'?'C1':m[1];if(!D[tk]) D[tk]=code;
   if(m[2]&&(D[hk]==null||D[hk]==='')){const hrs=Math.round(parseFloat(m[2])*2)/2;if(!isNaN(hrs)&&hrs>=0) D[hk]=String(hrs)}}delete D[oldK]}}D.dayMigrated=1;save()}
 function migrateC1(){if(D.c1Migrated) return;for(let i=1;i<=26;i++){for(let d=0;d<14;d++){const k='dt'+i+'_'+d;if(D[k]==='C') D[k]='C1'}}D.c1Migrated=1;save()}
+async function boot(){
+window.clearEntries=clearEntries;
+window.fedretireLocal=()=>setStatus('local');
+await prepareChart();
+D=JSON.parse(localStorage.getItem(K)||'{}');
 seedSick();migrateDays();migrateC1();
 function fieldClass(k){if(k==='sc') return 'sickbal startbal';if(/^[ascm]c$/.test(k)) return 'startbal';if(/^[ascm][eu]\d+$/.test(k)) return 'narrow';return ''}
 function inp(k,ph=''){const idAttr=k==='sc'&&!document.getElementById('sick-start')?' id="sick-start"':'';return `<input${idAttr} data-k="${k}" class="${fieldClass(k)}" inputmode="decimal" type="number" min="0" step="0.25" value="${esc(D[k]??'')}" placeholder="${ph}" autocomplete="off">`}
@@ -148,7 +191,9 @@ function dayFields(i,d,iso,isH){const tk='dt'+i+'_'+d,hk='dh'+i+'_'+d;const type
  const opts=[['','–'],['A','A'],['S','S'],['C1','C1'],['C2','C2']].map(([v,l])=>`<option value="${v}"${type===v?' selected':''}>${l}</option>`).join('');
  const mark=isH?`<span class="hmark" title="${esc(isH)}">H · ${esc(shortHol(isH))}</span>`:'';
  return `<div class="daystack">${mark}<span class="daypair"><select data-k="${tk}" class="daytype" aria-label="Leave type ${md(iso)}">${opts}</select><input data-k="${hk}" class="dayhrs" inputmode="decimal" type="number" min="0" step="0.5" value="${esc(hrs)}" aria-label="Hours used ${md(iso)}"></span></div>`}
-function clearEntries(){if(!confirm('Clear all entries?')) return;localStorage.removeItem(K);location.reload()}
+function clearEntries(){if(!confirm('Clear all entries?')) return;localStorage.removeItem(K);localStorage.setItem(UPDATED_KEY,new Date().toISOString());
+ const token=localStorage.getItem(TOKEN_KEY);const done=()=>location.reload();if(!token){done();return}
+ fetch('/api/entries',{method:'PUT',keepalive:true,headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({data:{}})}).finally(done)}
 const DAYF=['SUN','MON','TUE','WED','THU','FRI','SAT','SUN','MON','TUE','WED','THU','FRI','SAT'];
 const DAYL=['S','M','T','W','T','F','S','S','M','T','W','T','F','S'];
 let h='<colgroup><col class="c-num"><col class="c-dates">'+'<col class="c-day">'.repeat(14);
@@ -198,16 +243,30 @@ const _calc=calc;calc=function(){_calc();T.forEach(([k])=>{for(let i=1;i<=26;i++
  document.getElementById('mbar').innerHTML=`<div>Annual<b>${g('atb')}</b></div><div>Sick<b>${g('stb')}</b></div><div>Credit<b>${g('ctb')}</b></div><div>Comp<b>${g('mtb')}</b></div><div class="${ul>0?'w':''}">Use/Lose<b>${f(ul)}</b></div><div>Cr Days<b>${f(parseFloat(g('ctb'))/8)}</b></div>`};
 document.addEventListener('input',e=>{const k=e.target.dataset.k;if(!k)return;document.querySelectorAll(`[data-k="${k}"]`).forEach(x=>{if(x!==e.target)x.value=e.target.value})},true);
 calc();
+allowSync=true;
+window.fedretirePush=pushChart;
+setStatus(localStorage.getItem(TOKEN_KEY)&&cloudMode==='on'?'saved':'local');
+window.addEventListener('pagehide',()=>{const token=localStorage.getItem(TOKEN_KEY);const raw=localStorage.getItem(K);if(!token||!raw)return;
+ try{fetch('/api/entries',{method:'PUT',keepalive:true,headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({data:JSON.parse(raw)})})}catch(e){}});
+}
+boot();
 </script><script>
-/* CONFIG: Pardot form handler (or other) URL. Leave '' to skip posting. Field names: first_name, last_name, email, agency */
-const SIGNUP_ENDPOINT='';
-(function(){const UK='fedretire-leave-2027-unlocked',g=document.getElementById('gate');
+/* Sign-up is stored by /api/signup when Supabase is configured. Otherwise the chart stays in this browser. */
+(function(){const UK='fedretire-leave-2027-unlocked',EMAIL_KEY='fedretire-leave-2027-email',NAME_KEY='fedretire-leave-2027-name',TOKEN_KEY='fedretire-leave-2027-token',g=document.getElementById('gate');
  if(localStorage.getItem(UK)){g.remove();return}document.body.classList.add('locked');
  const unlock=()=>{localStorage.setItem(UK,new Date().toISOString());g.remove();document.body.classList.remove('locked')};
- document.getElementById('gf').addEventListener('submit',e=>{const f=e.target,v=n=>f[n].value.trim(),er=document.getElementById('gerr');
+ document.getElementById('gf').addEventListener('submit',async e=>{const f=e.target,v=n=>f[n].value.trim(),er=document.getElementById('gerr'),btn=f.querySelector('button');
   if(!v('first_name')||!v('last_name')){e.preventDefault();er.textContent='Please enter your first and last name.';return}
   if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email'))){e.preventDefault();er.textContent='Please enter a valid email address.';return}
-  if(!SIGNUP_ENDPOINT){e.preventDefault();console.log('Signup (no endpoint set):',Object.fromEntries(new FormData(f)));unlock();return}
-  f.action=SIGNUP_ENDPOINT;setTimeout(unlock,800); /* form posts to hidden iframe: no CORS needed */});
+  e.preventDefault();btn.disabled=true;const email=v('email').toLowerCase();const name=(v('first_name')+' '+v('last_name')).trim();
+  localStorage.setItem(EMAIL_KEY,email);localStorage.setItem(NAME_KEY,name);
+  const ctrl=new AbortController();const timer=setTimeout(()=>ctrl.abort(),8000);
+  try{const res=await fetch('/api/signup',{method:'POST',headers:{'Content-Type':'application/json'},signal:ctrl.signal,body:JSON.stringify({email,first_name:v('first_name'),last_name:v('last_name'),agency:v('agency'),name})});
+   if(res.ok){const body=await res.json();if(body.token)localStorage.setItem(TOKEN_KEY,body.token)}}
+  catch(err){}
+  finally{clearTimeout(timer);unlock();
+   for(let i=0;i<40&&!window.fedretirePush;i++)await new Promise(r=>setTimeout(r,100));
+   if(localStorage.getItem(TOKEN_KEY)&&window.fedretirePush)window.fedretirePush();
+   else if(window.fedretireLocal)window.fedretireLocal()}});
 })();
 </script></body></html>
