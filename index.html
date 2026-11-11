@@ -248,14 +248,13 @@ document.addEventListener('input',e=>{const k=e.target.dataset.k;if(!k)return;do
 calc();
 allowSync=true;
 window.fedretirePush=pushChart;
+function chartWeight(data){if(!data||typeof data!=='object')return 0;let n=0;for(const [k,v] of Object.entries(data)){if(v==null||v==='')continue;if(/^[ascm]c$/.test(k)||/^[ascm]u\d+$/.test(k)||/^ae\d+$/.test(k)||/^dt/.test(k)||/^dh/.test(k))n+=5;else if(!/^se\d+$/.test(k)&&k!=='sickSeeded'&&k!=='dayMigrated'&&k!=='c1Migrated')n+=1}return n}
 window.fedretireAfterSignup=async function(){const token=localStorage.getItem(TOKEN_KEY);if(!token){setStatus('local');return}
  try{const res=await fetch('/api/entries',{headers:{Authorization:'Bearer '+token}});
   if(res.status===503){setStatus('local');return}
-  if(res.ok){const body=await res.json();if(body&&body.data&&typeof body.data==='object'&&!Array.isArray(body.data)&&body.updated_at){localStorage.setItem(K,JSON.stringify(body.data));localStorage.setItem(UPDATED_KEY,body.updated_at);location.reload();return}}
-  await pushChart()}catch(e){setStatus('local')}};
+  if(res.ok){const body=await res.json();const remote=body&&body.data;if(remote&&typeof remote==='object'&&!Array.isArray(remote)&&body.updated_at){const local=JSON.parse(localStorage.getItem(K)||'{}');if(chartWeight(remote)>=chartWeight(local)){localStorage.setItem(K,JSON.stringify(remote));localStorage.setItem(UPDATED_KEY,body.updated_at);location.reload();return}}}
+  if(res.status===404||res.ok)await pushChart()}catch(e){setStatus('local')}};
 setStatus(localStorage.getItem(TOKEN_KEY)&&cloudMode==='on'?'saved':'local');
-window.addEventListener('pagehide',()=>{const token=localStorage.getItem(TOKEN_KEY);const raw=localStorage.getItem(K);if(!token||!raw)return;
- try{fetch('/api/entries',{method:'PUT',keepalive:true,headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({data:JSON.parse(raw)})})}catch(e){}});
 }
 boot();
 </script><script>
