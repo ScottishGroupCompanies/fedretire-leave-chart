@@ -2,6 +2,10 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/sign-in", "destination": "/sign-in.html" },
+    { "source": "/sign-up", "destination": "/sign-up.html" }
+  ],
   "redirects": [
     {
       "source": "/",

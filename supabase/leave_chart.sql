@@ -2,6 +2,9 @@
 -- Apply in the public schema. RLS is on and there are no policies:
 -- the Vercel API uses the service role key, which bypasses RLS.
 -- The browser never receives that key.
+-- After Clerk sign-in, extra.clerk_user_id stores the Clerk user id.
+-- A chart saved by the old email gate is linked when that same email
+-- signs in with a password. No new columns are required.
 
 create extension if not exists pgcrypto;
 

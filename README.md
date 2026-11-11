@@ -1,8 +1,10 @@
 # 2027 Federal Employee's Leave Record (fedretire.net)
 This is an interactive web version of the FederalRetirement.net/fedretire.net leave chart. It uses the same calculations as the 2026 Excel sheet.
 - `npm i && npm run dev` to develop. `npm run build` outputs to `dist/`, and Vercel auto-detects the Vite setup.
-- Entries are saved in the browser's localStorage (key `fedretire-leave-2027`) and, when configured, in Supabase.
-- Server env (Vercel only, never in the browser): `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`. Schema reference: `supabase/leave_chart.sql`. If those are missing, `/api/signup` and `/api/entries` return 503 and the chart stays in the browser.
+- The chart itself (balances, the pay-period grid, print, clear, and the filled Excel download) is shown only after sign-in. The how-to cards, accrual rules, day codes, footer, and the blank Excel template stay public. Sign-in and sign-up are at `/sign-in` and `/sign-up`.
+- Accounts use Clerk email and password on the existing application `app_3Ly8wE6PGTRoAfjHddfIGUrvoRR` (instance `ins_3Ly8wFk4zqXv5a14ukIX8EBC9f6`). This repo is Vite, not Next.js. The browser key is `VITE_CLERK_PUBLISHABLE_KEY` (Vite only inlines `VITE_` variables, and it is read at build time). `CLERK_SECRET_KEY` is server-only for `/api/entries` and must never use a `VITE_` prefix. See `.env.example`.
+- Entries are saved in the browser for the signed-in Clerk user and, when configured, in Supabase. A chart stored by the old email gate is attached when a Clerk account uses that same email. `/api/signup` is retired and no longer issues a passwordless token.
+- Server env (Vercel only, never in the browser): `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`, and `CLERK_SECRET_KEY`. Schema reference: `supabase/leave_chart.sql`. If Supabase or the Clerk secret is missing, `/api/entries` returns 503 and the signed-in chart stays in the browser.
 - The canonical site is https://leave.fedretire.net. Production requests to fedretire-leave-chart.vercel.app redirect there. A blank Excel template is at `/fedretire-2027-leave-chart.xlsx`. Regenerate it with `node scripts/build-leave-template.mjs`.
 - 2027 pay periods and holidays are embedded in index.html. They come from public/calendar2027.json (NFC 1217n_27 and the GSA 2027 payroll calendar).
 - The chart starts at pay period 1, Jan 10–23, 2027, and runs 26 periods through Dec 26, 2027–Jan 8, 2028. January 1, 2027 is in the prior leave year and is not shown. New Year's Day 2028 (observed Dec 31, 2027) is marked in pay period 26.

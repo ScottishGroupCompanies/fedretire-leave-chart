@@ -1,7 +1,7 @@
 import { buildLeaveWorkbook } from '../lib/leaveWorkbook.js';
 
 window.fedretireDownloadExcel = async function () {
-  const raw = localStorage.getItem('fedretire-leave-2027');
+  const raw = localStorage.getItem(window.fedretireChartKey || 'fedretire-leave-2027');
   const data = raw ? JSON.parse(raw) : {};
   const calendar = await fetch('/calendar2027.json').then(r => r.json());
   const bytes = await buildLeaveWorkbook(data, calendar);

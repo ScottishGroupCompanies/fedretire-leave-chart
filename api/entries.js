@@ -1,30 +1,24 @@
-import { bearerToken, clientIp, getSupabase, hashToken, json, MAX_BYTES, rateLimited, readJson } from '../lib/leaveStore.js';
+import { requireClerkUser, signupForClerkUser } from '../lib/clerkUser.js';
+import { clientIp, getSupabase, json, MAX_BYTES, rateLimited, readJson } from '../lib/leaveStore.js';
 
 export const config = { api: { bodyParser: { sizeLimit: '200kb' } } };
-
-async function signupFor(supabase, token) {
-  const token_hash = hashToken(token);
-  const { data, error } = await supabase.from('leave_chart_signups').select('id').eq('token_hash', token_hash).maybeSingle();
-  if (error) return { error: true };
-  if (!data) return { missing: true };
-  return { signup: data };
-}
 
 export default async function handler(req, res) {
   if (req.method !== 'GET' && req.method !== 'PUT') return json(res, 405, { error: 'method' });
   const supabase = getSupabase();
-  if (!supabase) return json(res, 503, { error: 'unconfigured' });
+  if (!supabase || !process.env.CLERK_SECRET_KEY) return json(res, 503, { error: 'unconfigured' });
 
-  const token = bearerToken(req);
-  if (!token) return json(res, 401, { error: 'auth' });
   const ip = clientIp(req);
-  if (rateLimited('entries:' + ip, 60, 60 * 1000) || rateLimited('entries-token:' + token.slice(0, 12), 40, 60 * 1000)) {
-    return json(res, 429, { error: 'rate' });
-  }
+  if (rateLimited('entries:' + ip, 60, 60 * 1000)) return json(res, 429, { error: 'rate' });
 
-  const found = await signupFor(supabase, token);
+  const auth = await requireClerkUser(req);
+  if (auth.status === 503) return json(res, 503, { error: 'unconfigured' });
+  if (auth.status === 401) return json(res, 401, { error: 'auth' });
+  if (auth.status !== 200) return json(res, 500, { error: 'auth' });
+  if (rateLimited('entries-user:' + auth.user.id, 40, 60 * 1000)) return json(res, 429, { error: 'rate' });
+
+  const found = await signupForClerkUser(supabase, auth.user);
   if (found.error) return json(res, 500, { error: 'lookup' });
-  if (found.missing) return json(res, 401, { error: 'auth' });
   const signupId = found.signup.id;
 
   if (req.method === 'GET') {
