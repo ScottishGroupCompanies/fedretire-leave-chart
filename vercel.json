@@ -1,1 +1,19 @@
-{"framework":"vite","buildCommand":"npm run build","outputDirectory":"dist"}
+{
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "redirects": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "fedretire-leave-chart.vercel.app" }],
+      "destination": "https://leave.fedretire.net/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "fedretire-leave-chart.vercel.app" }],
+      "destination": "https://leave.fedretire.net/:path*",
+      "permanent": true
+    }
+  ]
+}

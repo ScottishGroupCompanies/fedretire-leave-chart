@@ -37,6 +37,7 @@ thead tr.yb th{background:#e8eef5;color:var(--navy);font-weight:700;white-space:
 .btns{display:flex;flex-wrap:wrap;align-items:flex-start;gap:8px 16px}
 .btns button{background:var(--navy);color:#fff;border:0;border-radius:4px;padding:8px 14px;font:700 .9rem Lato;cursor:pointer}
 .btns button.alt{background:#fff;color:var(--navy);border:1px solid var(--navy)}
+a.excel-link{align-self:center;color:var(--navy);font-weight:700;font-size:.9rem}
 .albox{max-width:340px}
 .af label{font-weight:700;font-size:.8rem;color:var(--navy);display:block;text-align:left}
 .af select{width:auto;min-width:108px;background:#fff;color:var(--navy);border:1px solid var(--navy);border-radius:4px;padding:6px 8px;font:700 .85rem Lato;text-align:left}
@@ -77,12 +78,13 @@ details{margin-top:8px}summary{cursor:pointer;color:var(--navy);font-weight:700;
 #gate label{display:block;font-size:.8rem;font-weight:700;margin:8px 0 3px}#gate input{width:100%;text-align:left;background:#fff;padding:9px;font-size:1rem}
 #gate .row{display:flex;gap:10px}#gate .row>div{flex:1}#gate .err{color:#cf2e2e;font-size:.8rem;min-height:1em}
 #gate button{width:100%;margin-top:12px;background:var(--navy);color:#fff;border:0;border-radius:5px;padding:12px;font:900 1rem Lato;cursor:pointer}
-#gate .fine{font-size:.72rem;color:#666;margin-top:10px}body.locked{overflow:hidden}
+#gate .fine{font-size:.72rem;color:#666;margin-top:10px}#gate .hint{font-size:.9rem;color:var(--navy);font-weight:700;margin:0 0 12px}body.locked{overflow:hidden}
 @media print{#gate{display:none!important}}
 </style></head><body>
 <div id="gate" role="dialog" aria-modal="true" aria-labelledby="gt"><div class="box">
 <img src="logo.jpg" alt="fedretire.net"><h2 id="gt">Get your free 2027 Federal Leave Chart</h2>
 <p>Track annual, sick, credit and comp leave for all 26 pay periods and plan your target retirement date. Enter your email for instant access.</p>
+<p class="hint">Already signed up? Enter the same email to load your saved chart.</p>
 <form id="gf" method="post" target="gframe" novalidate>
 <div class="row"><div><label for="g1">First name *</label><input id="g1" name="first_name" autocomplete="given-name" required></div>
 <div><label for="g2">Last name *</label><input id="g2" name="last_name" autocomplete="family-name" required></div></div>
@@ -96,13 +98,13 @@ details{margin-top:8px}summary{cursor:pointer;color:var(--navy);font-weight:700;
 <div><h1>Regular Federal Employee's Leave Record – 2027</h1><p>26 pay periods this year (Jan 10, 2027 – Jan 8, 2028). Free leave chart compliments of <a href="https://fedretire.net/">fedretire.net</a></p></div></header>
 <main>
 <div class="grid">
-<div class="card"><h2>How to use</h2><p style="margin:0;font-size:.9rem">Enter your 2026 ending leave balances at the top of each leave category.<br>Enter leave hours used for each leave type per pay period. Accrued annual leave balances update automatically based on your selection, either 4, 6 or 8 hours per pay. All entries can be edited for part-time employees.<br>When taking leave, choose A, S, C1, or C2 for that day and the hours used (fractional hours are allowed). Daily hours are not copied into the Used column. You must add them to each leave category on the right side of the form per pay period. Your entries are saved automatically.</p></div>
+<div class="card"><h2>How to use</h2><p style="margin:0;font-size:.9rem">Enter your 2026 ending leave balances at the top of each leave category.<br>Enter leave hours used for each leave type per pay period. Accrued annual leave balances update automatically based on your selection, either 4, 6 or 8 hours per pay. All entries can be edited for part-time employees.<br>When taking leave, choose A, S, C1, or C2 for that day and the hours used (fractional hours are allowed). Daily hours are not copied into the Used column. You must add them to each leave category on the right side of the form per pay period. Your entries are saved automatically.<br>Bookmark <a href="https://leave.fedretire.net/">leave.fedretire.net</a>, or save that same address as a desktop shortcut. A shortcut to a different address, or one that opens in another browser, shows the sign-up form again. Enter the same email and your saved chart will load.</p></div>
 <div class="card"><h2>Annual leave earned each pay period</h2><p style="margin:0;font-size:.9rem">Less than 3 years: <b>4 hrs</b><br>3 – 15 years: <b>6 hrs</b> (10 hrs in last pay period — type 10 on pay period 26)<br>15 years and over: <b>8 hrs</b><br>Choose 4, 6, or 8 next to Clear all entries. That fills all 26 annual earned cells, and you can still change any pay period.</p><h2>SICK LEAVE</h2><p style="margin:0;font-size:.9rem">Sick leave auto-accrues at 4 hours per pay period. All entries can be edited for part-time employees.</p><p style="margin:8px 0 0;font-size:.9rem"><a href="https://federalretirement.net/sick-leave-conversion/" target="_blank" rel="noopener noreferrer">Sick Leave Conversion Chart</a></p></div>
 <div class="card legend"><h2>Day codes</h2><span><b>A</b> Annual</span><span><b>S</b> Sick</span><span><b>C1</b> Credit hours</span><span><b>C2</b> Comp hours</span><span><b>H</b> Holiday</span><div style="font-size:.75rem">Holidays stay marked on the calendar. Enter hours beside A, S, C1, or C2. Add those hours yourself in the Used column.</div></div>
 </div>
 <div class="card"><h2>Year summary</h2><div class="sum" id="sum"></div></div>
 <div class="card" id="start-mobile"></div>
-<div class="card btns noprint" id="toolbar"><button type="button" onclick="print()">Print / Save PDF</button><button type="button" class="alt" id="clear-btn" onclick="clearEntries()">Clear all entries</button><div class="albox" id="albox"></div><p id="savestatus" class="savestatus" aria-live="polite"></p></div>
+<div class="card btns noprint" id="toolbar"><button type="button" onclick="print()">Print / Save PDF</button><button type="button" id="excel-btn" onclick="downloadExcel()">Download Excel</button><a class="excel-link" href="/fedretire-2027-leave-chart.xlsx">Blank Excel template</a><button type="button" class="alt" id="clear-btn" onclick="clearEntries()">Clear all entries</button><div class="albox" id="albox"></div><p id="savestatus" class="savestatus" aria-live="polite"></p></div>
 <div id="mbar"></div><div id="cards"></div><div class="card tw"><table id="t"></table></div>
 </main>
 <footer><div class="grid"><div><h2 style="color:#fff">Resources</h2>
@@ -133,6 +135,7 @@ let allowSync=false;
 let cloudMode='off';
 function save(){localStorage.setItem(K,JSON.stringify(D));if(!allowSync)return;localStorage.setItem(UPDATED_KEY,new Date().toISOString());scheduleSync()}
 function setStatus(mode){const el=document.getElementById('savestatus');if(!el)return;el.textContent=mode==='saving'?'Saving…':mode==='saved'?'Saved':'Saved in this browser'}
+function downloadExcel(){if(window.fedretireDownloadExcel)return window.fedretireDownloadExcel();}
 let syncTimer=null;
 function scheduleSync(){if(!localStorage.getItem(TOKEN_KEY)){setStatus('local');return}setStatus('saving');clearTimeout(syncTimer);syncTimer=setTimeout(pushChart,1500)}
 async function pushChart(){const token=localStorage.getItem(TOKEN_KEY);if(!token){setStatus('local');return}setStatus('saving');
@@ -245,6 +248,11 @@ document.addEventListener('input',e=>{const k=e.target.dataset.k;if(!k)return;do
 calc();
 allowSync=true;
 window.fedretirePush=pushChart;
+window.fedretireAfterSignup=async function(){const token=localStorage.getItem(TOKEN_KEY);if(!token){setStatus('local');return}
+ try{const res=await fetch('/api/entries',{headers:{Authorization:'Bearer '+token}});
+  if(res.status===503){setStatus('local');return}
+  if(res.ok){const body=await res.json();if(body&&body.data&&typeof body.data==='object'&&!Array.isArray(body.data)&&body.updated_at){localStorage.setItem(K,JSON.stringify(body.data));localStorage.setItem(UPDATED_KEY,body.updated_at);location.reload();return}}
+  await pushChart()}catch(e){setStatus('local')}};
 setStatus(localStorage.getItem(TOKEN_KEY)&&cloudMode==='on'?'saved':'local');
 window.addEventListener('pagehide',()=>{const token=localStorage.getItem(TOKEN_KEY);const raw=localStorage.getItem(K);if(!token||!raw)return;
  try{fetch('/api/entries',{method:'PUT',keepalive:true,headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({data:JSON.parse(raw)})})}catch(e){}});
@@ -265,8 +273,10 @@ boot();
    if(res.ok){const body=await res.json();if(body.token)localStorage.setItem(TOKEN_KEY,body.token)}}
   catch(err){}
   finally{clearTimeout(timer);unlock();
-   for(let i=0;i<40&&!window.fedretirePush;i++)await new Promise(r=>setTimeout(r,100));
-   if(localStorage.getItem(TOKEN_KEY)&&window.fedretirePush)window.fedretirePush();
+   for(let i=0;i<40&&!window.fedretireAfterSignup;i++)await new Promise(r=>setTimeout(r,100));
+   if(localStorage.getItem(TOKEN_KEY)&&window.fedretireAfterSignup)window.fedretireAfterSignup();
    else if(window.fedretireLocal)window.fedretireLocal()}});
 })();
-</script></body></html>
+</script>
+<script type="module" src="/src/excel-entry.js"></script>
+</body></html>
